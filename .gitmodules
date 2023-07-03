@@ -1,0 +1,12 @@
+[submodule "pinocchio"]
+	path = pinocchio
+	url = git@gitlab.inria.fr:jucarpen/pinocchio.git
+	branch = pinocchio-3x
+[submodule "eigenpy"]
+	path = eigenpy
+	url = git@github.com:stack-of-tasks/eigenpy
+	branch = devel
+[submodule "hpp-fcl"]
+	path = hpp-fcl
+	url = git@github.com:humanoid-path-planner/hpp-fcl
+	branch = hppfcl3x
