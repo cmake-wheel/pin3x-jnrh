@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.26)
 
 project(pin3x-jnrh VERSION 2.9.2)
 
-find_package(Python REQUIRED COMPONENTS Interpreter Development.Module NumPy)
+find_package(Python3 REQUIRED COMPONENTS Interpreter Development.Module NumPy)
 
 #set(PYTHONPATH "${CMAKE_INSTALL_PREFIX}/lib/python3.${Python_VERSION_MINOR}/site-packages")
 
