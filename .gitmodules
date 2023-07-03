@@ -9,3 +9,6 @@
 [submodule "cmake"]
 	path = cmake
 	url = git@github.com:jrl-umi3218/jrl-cmakemodules.git
+[submodule "example-robot-data"]
+	path = example-robot-data
+	url = git@github.com:gepetto/example-robot-data

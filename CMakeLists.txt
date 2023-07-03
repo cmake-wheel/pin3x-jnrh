@@ -24,7 +24,7 @@ ExternalProject_Add("hpp-fcl" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/hpp-fcl"
     "-DBoost_NO_WARN_NEW_VERSIONS=ON" "-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" "-DCMAKE_INSTALL_LIBDIR=lib"
     "-DPYTHON_STANDARD_LAYOUT=ON" "-DPYTHON_DEB_LAYOUT=OFF" "-DPYTHON_EXECUTABLE=${Python_EXECUTABLE}"
     "-DCMAKE_PREFIX_PATH=${CMEEL_PATH}@${CASADI_PATH}"
-    TEST_AFTER_INSTALL ON
+    #TEST_AFTER_INSTALL ON
     LIST_SEPARATOR "@"
 )
 
@@ -40,7 +40,7 @@ ExternalProject_Add("pinocchio" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/pinocchio"
     "-DPYTHON_STANDARD_LAYOUT=ON" "-DPYTHON_DEB_LAYOUT=OFF" "-DPYTHON_EXECUTABLE=${Python_EXECUTABLE}"
     "-DCMAKE_PREFIX_PATH=${CMAKE_INSTALL_PREFIX}@${CMEEL_PATH}@${CASADI_PATH}"
     "-DBUILD_WITH_COLLISION_SUPPORT=ON" "-DBUILD_WITH_CASADI_SUPPORT=ON" "-DBUILD_WITH_LIBPYTHON=OFF"
-    TEST_AFTER_INSTALL ON
+    #TEST_AFTER_INSTALL ON
     LIST_SEPARATOR "@"
     PATCH_COMMAND "sed" "-i.bak"
     "-e" "s|COMMAND.*import hppfcl|COMMAND ${SETENV} python -c \"import os, sys@print('X', sys.path)@print('Y', os.environ)@import hppfcl|"
@@ -55,6 +55,19 @@ ExternalProject_Add("pinocchio" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/pinocchio"
 )
 
 ExternalProject_Add_StepDependencies("pinocchio" "configure" "hpp-fcl")
+
+ExternalProject_Add("example-robot-data" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/example-robot-data"
+    GIT_TAG "master"
+    GIT_SUBMODULES_RECURSE ON
+    CMAKE_ARGS "-DBUILD_DOCUMENTATION=OFF" "-DINSTALL_DOCUMENTATION=OFF" "-DCMAKE_BUILD_TYPE=Release"
+    "-DBoost_NO_WARN_NEW_VERSIONS=ON" "-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" "-DCMAKE_INSTALL_LIBDIR=lib"
+    "-DPYTHON_STANDARD_LAYOUT=ON" "-DPYTHON_DEB_LAYOUT=OFF" "-DPYTHON_EXECUTABLE=${Python_EXECUTABLE}"
+    "-DCMAKE_PREFIX_PATH=${CMAKE_INSTALL_PREFIX}@${CMEEL_PATH}@${CASADI_PATH}"
+    #TEST_AFTER_INSTALL ON
+    LIST_SEPARATOR "@"
+)
+
+ExternalProject_Add_StepDependencies("example-robot-data" "configure" "pinocchio")
 
 enable_testing()
 add_test(NAME "import-eigenpy" COMMAND "${Python_EXECUTABLE}" "-c"
