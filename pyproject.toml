@@ -11,7 +11,7 @@ dependencies = ["cmeel-boost == 1.81.0", "cmeel-console-bridge == 1.0.2.1", "cme
 "cmeel-octomap == 1.9.8.1", "numpy == 1.24.0"]
 description = "A fast and flexible implementation of Rigid Body Dynamics algorithms and their analytical derivatives - TEMPORARY PACKAGE"
 license = "BSD-3-Clause"
-name = "pin3x-jnrh"
+name = "pin3x-jnrh2023"
 version = "2.9.2"
 
 [project.urls]
