@@ -27,8 +27,8 @@ message(STATUS "found casadi: ${CASADI_PATH}")
 
 include(ExternalProject)
 
-ExternalProject_Add("hpp-fcl" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/hpp-fcl"
-    GIT_TAG "hppfcl3x"
+ExternalProject_Add("eigenpy" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/eigenpy"
+    GIT_TAG "master"
     GIT_SUBMODULES_RECURSE ON
     CMAKE_ARGS "-DBUILD_DOCUMENTATION=OFF" "-DINSTALL_DOCUMENTATION=OFF" "-DCMAKE_BUILD_TYPE=Release"
     "-DBoost_NO_WARN_NEW_VERSIONS=ON" "-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" "-DCMAKE_INSTALL_LIBDIR=lib"
@@ -38,6 +38,21 @@ ExternalProject_Add("hpp-fcl" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/hpp-fcl"
     #TEST_AFTER_INSTALL ON
     LIST_SEPARATOR "@"
 )
+
+
+ExternalProject_Add("hpp-fcl" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/hpp-fcl"
+    GIT_TAG "hppfcl3x"
+    GIT_SUBMODULES_RECURSE ON
+    CMAKE_ARGS "-DBUILD_DOCUMENTATION=OFF" "-DINSTALL_DOCUMENTATION=OFF" "-DCMAKE_BUILD_TYPE=Release"
+    "-DBoost_NO_WARN_NEW_VERSIONS=ON" "-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" "-DCMAKE_INSTALL_LIBDIR=lib"
+    "-DPYTHON_STANDARD_LAYOUT=ON" "-DPYTHON_DEB_LAYOUT=OFF" "-DPYTHON_EXECUTABLE=${Python_EXECUTABLE}"
+    "-DCMAKE_PREFIX_PATH=${CMAKE_INSTALL_PREFIX}@${CMEEL_PATH}@${CASADI_PATH}"
+    "-DBUILD_TESTING=OFF"
+    #TEST_AFTER_INSTALL ON
+    LIST_SEPARATOR "@"
+)
+
+ExternalProject_Add_StepDependencies("hpp-fcl" "configure" "eigenpy")
 
 #set(LD_LIBRARY_PATH "${CMEEL_PATH}/lib")
 #set(SETENV "cmake -E env PYTHONPATH=${PYTHONPATH} LD_LIBRARY_PATH=${LD_LIBRARY_PATH}")
@@ -78,6 +93,7 @@ ExternalProject_Add("example-robot-data" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/exa
     "-DBUILD_TESTING=OFF"
     #TEST_AFTER_INSTALL ON
     LIST_SEPARATOR "@"
+  COMMAND "${CMAKE_COMMAND}" "-E" "rm" "-rf" "${CMAKE_INSTALL_PREFIX}/include"
 )
 
 ExternalProject_Add_StepDependencies("example-robot-data" "configure" "pinocchio")

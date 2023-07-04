@@ -9,6 +9,12 @@
 [submodule "cmake"]
 	path = cmake
 	url = git@github.com:jrl-umi3218/jrl-cmakemodules.git
+	branch = master
 [submodule "example-robot-data"]
 	path = example-robot-data
 	url = git@github.com:gepetto/example-robot-data
+	branch = master
+[submodule "eigenpy"]
+	path = eigenpy
+	url = git@github.com:stack-of-tasks/eigenpy
+	branch = master
