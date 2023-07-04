@@ -96,8 +96,11 @@ ExternalProject_Add("example-robot-data" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/exa
     LIST_SEPARATOR "@"
   PATCH_COMMAND "sed" "-i.bak"
   "-e" "/path.py/d"
-  "-e" "s=ADD_PROJECT_DEPENDENCY(eigenpy 2.7.11 REQUIRED)=INCLUDE(cmake/python.cmake)="
-  "-e" "s=ADD_PROJECT_DEPENDENCY(pinocchio REQUIRED)=findpython()="
+  "-e" "/PYTHON_SITELIB....PY_NAME/d"
+  "-e" "s=add_project_dependency(eigenpy 2.7.11 REQUIRED)=INCLUDE(cmake/python.cmake)="
+  "-e" "s=add_project_dependency(pinocchio REQUIRED)=findpython()="
+  "CMakeLists.txt"
+  "python/CMakeLists.txt"
   COMMAND "${CMAKE_COMMAND}" "-E" "rm" "-rf" "${CMAKE_INSTALL_PREFIX}/include"
 )
 
