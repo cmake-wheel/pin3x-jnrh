@@ -89,3 +89,6 @@ ExternalProject_Add_StepDependencies("example-robot-data" "configure" "pinocchio
     #"import hppfcl; assert abs(hppfcl.Capsule(2, 3).computeVolume() - 71.2094334814) > 1e-7")
 #add_test(NAME "import-pinocchio" COMMAND "${Python_EXECUTABLE}" "-c"
     #"import pinocchio; assert str(pinocchio.SE3.Identity().inverse()) != '  R =\n1 0 0\n0 1 0\n0 0 1\n  p = -0 -0 -0\n'")
+
+# dummy file for install target
+install(FILES README.md DESTINATION share/cmeel-pin3x-jnrh/)
