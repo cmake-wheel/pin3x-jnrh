@@ -18,8 +18,8 @@ version = "2.9.2"
 homepage = "https://github.com/stack-of-tasks/pinocchio"
 
 [tool.cmeel]
-build-number = 1
 run-tests = false
+check-relocatable = false
 
 [tool.tomlsort]
 all = true
