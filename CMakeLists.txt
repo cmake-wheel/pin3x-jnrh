@@ -101,7 +101,8 @@ ExternalProject_Add("example-robot-data" GIT_REPOSITORY "${CMAKE_SOURCE_DIR}/exa
   "-e" "s=add_project_dependency(pinocchio REQUIRED)=findpython()="
   "CMakeLists.txt"
   "python/CMakeLists.txt"
-  COMMAND "${CMAKE_COMMAND}" "-E" "rm" "-rf" "${CMAKE_INSTALL_PREFIX}/include"
+  TEST_AFTER_INSTALL ON
+  TEST_COMMAND "${CMAKE_COMMAND}" "-E" "rm" "-rf" "${CMAKE_INSTALL_PREFIX}/include"
 )
 
 ExternalProject_Add_StepDependencies("example-robot-data" "configure" "pinocchio")
