@@ -1,5 +1,5 @@
 [build-system]
-build-backend = "cmeel.build"
+build-backend = "cmeel"
 requires = ["cmeel[build]", "cmeel-boost == 1.81.0", "cmeel-console-bridge == 1.0.2.1", "cmeel-tinyxml == 2.6.2.1",
 "cmeel-urdfdom-headers == 1.1.0", "cmeel-urdfdom == 3.1.0.2", "casadi == 3.6.3", "cmeel-eigen == 3.4.0.1", "cmeel-assimp == 5.2.5",
 "cmeel-octomap == 1.9.8.1", "numpy == 1.24.0"]
